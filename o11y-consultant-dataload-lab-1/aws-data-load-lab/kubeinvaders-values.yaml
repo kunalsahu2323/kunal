@@ -1,0 +1,11 @@
+config:
+  target_namespace: "namespace1,namespace2"
+
+ingress:
+  enabled: true
+  hostName: kubeinvaders.local
+  tls_enabled: false
+
+deployment:
+  image:
+    tag: latest

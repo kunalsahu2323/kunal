@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "4"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"deployment.kubernetes.io/revision":"3","meta.helm.sh/release-name":"kubeinvaders","meta.helm.sh/release-namespace":"kubeinvaders"},"creationTimestamp":"2025-03-11T02:17:34Z","generation":3,"labels":{"app.kubernetes.io/instance":"kubeinvaders","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"kubeinvaders","helm.sh/chart":"kubeinvaders-1.9.7"},"name":"kubeinvaders","namespace":"kubeinvaders","resourceVersion":"16449113","uid":"719c78e4-3ade-4e73-9aa9-ca70799115a5"},"spec":{"progressDeadlineSeconds":600,"replicas":1,"revisionHistoryLimit":10,"selector":{"matchLabels":{"app.kubernetes.io/instance":"kubeinvaders","app.kubernetes.io/name":"kubeinvaders"}},"strategy":{"rollingUpdate":{"maxSurge":"25%","maxUnavailable":"25%"},"type":"RollingUpdate"},"template":{"metadata":{"annotations":{"kubectl.kubernetes.io/restartedAt":"2025-04-14T11:09:19+05:30","prometheus.io/scrape":"true"},"creationTimestamp":null,"labels":{"app.kubernetes.io/instance":"kubeinvaders","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"kubeinvaders"}},"spec":{"containers":[{"env":[{"name":"APPLICATION_URL","value":"kubeinvaders.local"},{"name":"NAMESPACE","value":"namespace1,namespace2"},{"name":"ALIENPROXIMITY","value":"10"},{"name":"HITSLIMIT","value":"1"},{"name":"UPDATETIME","value":"0.5"}],"image":"luckysideburn/kubeinvaders:latest","imagePullPolicy":"Always","name":"kubeinvaders","ports":[{"containerPort":8080,"name":"http","protocol":"TCP"}],"resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File"}],"dnsPolicy":"ClusterFirst","restartPolicy":"Always","schedulerName":"default-scheduler","securityContext":{},"serviceAccount":"kubeinvaders","serviceAccountName":"kubeinvaders","terminationGracePeriodSeconds":30}}},"status":{"availableReplicas":1,"conditions":[{"lastTransitionTime":"2025-03-11T02:18:02Z","lastUpdateTime":"2025-03-11T02:18:02Z","message":"Deployment has minimum availability.","reason":"MinimumReplicasAvailable","status":"True","type":"Available"},{"lastTransitionTime":"2025-03-11T02:17:34Z","lastUpdateTime":"2025-05-04T20:07:57Z","message":"ReplicaSet \"kubeinvaders-7b56667c98\" has successfully progressed.","reason":"NewReplicaSetAvailable","status":"True","type":"Progressing"}],"observedGeneration":3,"readyReplicas":1,"replicas":1,"updatedReplicas":1}}
+    meta.helm.sh/release-name: kubeinvaders
+    meta.helm.sh/release-namespace: kubeinvaders
+  creationTimestamp: "2025-03-11T02:17:34Z"
+  generation: 4
+  labels:
+    app.kubernetes.io/instance: kubeinvaders
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: kubeinvaders
+    helm.sh/chart: kubeinvaders-1.9.7
+  name: kubeinvaders
+  namespace: kubeinvaders
+  resourceVersion: "16459846"
+  uid: 719c78e4-3ade-4e73-9aa9-ca70799115a5
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: kubeinvaders
+      app.kubernetes.io/name: kubeinvaders
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/restartedAt: "2025-04-14T11:09:19+05:30"
+        prometheus.io/scrape: "true"
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: kubeinvaders
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: kubeinvaders
+    spec:
+      containers:
+      - env:
+        - name: APPLICATION_URL
+          value: kubeinvaders.local
+        - name: NAMESPACE
+          value: namespace1,namespace2
+        - name: ALIENPROXIMITY
+          value: "10"
+        - name: HITSLIMIT
+          value: "1"
+        - name: UPDATETIME
+          value: "0.5"
+        image: luckysideburn/kubeinvaders:latest
+        imagePullPolicy: Always
+        name: kubeinvaders
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: kubeinvaders
+      serviceAccountName: kubeinvaders
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: "2025-03-11T02:18:02Z"
+    lastUpdateTime: "2025-03-11T02:18:02Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2025-03-11T02:17:34Z"
+    lastUpdateTime: "2025-05-04T20:56:45Z"
+    message: ReplicaSet "kubeinvaders-5848864ff6" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  observedGeneration: 4
+  readyReplicas: 1
+  replicas: 1
+  updatedReplicas: 1

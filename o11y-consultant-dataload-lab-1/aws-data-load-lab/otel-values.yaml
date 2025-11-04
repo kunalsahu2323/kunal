@@ -1,0 +1,75 @@
+clusterName: "k8s-olly"
+
+################################################################################
+# Splunk Cloud / Splunk Enterprise configuration.
+################################################################################
+
+# Specify `endpoint` and `token` in order to send data to Splunk Cloud or Splunk
+# Enterprise.
+splunkPlatform:
+  # Required for Splunk Enterprise/Cloud. URL to a Splunk instance to send data
+  # to. e.g. "http://X.X.X.X:8088/services/collector/event". Setting this parameter
+  # enables Splunk Platform as a destination. Use the /services/collector/event
+  # endpoint for proper extraction of fields.
+  endpoint: "https://kunal.aio.prusplunk.com:8088/services/collector"
+  # Required for Splunk Enterprise/Cloud (if `endpoint` is specified). Splunk
+  # Alternatively the token can be provided as a secret.
+  # Refer to https://github.com/signalfx/splunk-otel-collector-chart/blob/main/docs/advanced-configuration.md#provide-tokens-as-a-secret
+  # HTTP Event Collector token.
+  token: "9fdb3bf5-f3e4-4ec7-9d11-b03dede908ef"
+
+  # Name of the Splunk event type index targeted. Required when ingesting logs to Splunk Platform.
+  index: "kubernetes"
+  
+  metricsIndex: "kubernetes_metrics"
+  # Name of the Splunk event type index targeted. Required when ingesting traces to Splunk Platform.
+  
+  tracesIndex: "kubernetes_traces"
+
+  insecureSkipVerify: true
+
+  logsEnabled: true
+
+splunkObservability:
+  # Required for Splunk Observability. Splunk Observability realm to send
+  # telemetry data to. Setting this parameter enables Splunk Observability as a
+  # destination.
+  realm: "us1"
+  # Required for Splunk Observability (if `realm` is specified). Splunk
+  # Alternatively the accessToken can be provided as a secret.
+  # Refer to https://github.com/signalfx/splunk-otel-collector-chart/blob/main/docs/advanced-configuration.md#provide-tokens-as-a-secret
+  # Observability org access token.
+  accessToken: "dTuFCrCQeKpk-_bVUj5jRQ"
+
+  # Optional. Splunk Observability ingest URL, default:
+  # "https://ingest.<realm>.signalfx.com".
+  ingestUrl: "https://ingest.us1.signalfx.com"
+  # Optional. Splunk Observability API URL, default:
+  # "https://api.<realm>.signalfx.com".
+  apiUrl: "https://api.us1.signalfx.com"
+
+  metricsEnabled: true
+  tracesEnabled: true
+  logsEnabled: true
+
+  infrastructureMonitoringEventsEnabled: true
+
+
+logsEngine: otel
+
+autodetect:
+  prometheus: true
+  istio: true
+
+agent:
+  enabled: true
+  config:
+    receivers:
+      prometheus:
+          fallback_scrape_protocol: "OpenMetricsText1.0.0"
+
+
+    service:
+      pipelines:
+        metrics:
+          receivers: [prometheus,otlp,signalfx,hostmetrics,kubeletstats]

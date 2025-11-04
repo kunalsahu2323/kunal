@@ -1,0 +1,142 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubectl.kubernetes.io/restartedAt: "2025-05-07T03:48:01+05:30"
+    prometheus.io/path: /metrics
+    prometheus.io/port: "8080"
+    prometheus.io/scrape: "true"
+  creationTimestamp: "2025-06-11T16:34:39Z"
+  generateName: kubeinvaders-55b59784cd-
+  labels:
+    app.kubernetes.io/instance: kubeinvaders
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: kubeinvaders
+    pod-template-hash: 55b59784cd
+  name: kubeinvaders-55b59784cd-4bjzf
+  namespace: kubeinvaders
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: kubeinvaders-55b59784cd
+    uid: c05e83a8-37c7-4581-8a45-aaf697cb9a61
+  resourceVersion: "11137690"
+  uid: a5102779-1cf5-4a51-b0c5-ead096b269d1
+spec:
+  containers:
+  - env:
+    - name: APPLICATION_URL
+      value: kubeinvaders.local
+    - name: NAMESPACE
+      value: namespace1,namespace2
+    - name: ALIENPROXIMITY
+      value: "10"
+    - name: HITSLIMIT
+      value: "1"
+    - name: UPDATETIME
+      value: "0.5"
+    - name: INSECURE_ENDPOINT
+      value: "true"
+    image: luckysideburn/kubeinvaders:v1.9.6
+    imagePullPolicy: Always
+    name: kubeinvaders
+    ports:
+    - containerPort: 8080
+      name: http
+      protocol: TCP
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-7xw92
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: k8s-olly-t3nm2
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: kubeinvaders
+  serviceAccountName: kubeinvaders
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-7xw92
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2025-06-11T16:34:41Z"
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2025-06-11T16:34:39Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2025-06-11T16:34:41Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2025-06-11T16:34:41Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2025-06-11T16:34:39Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://87edd36f75e5e660408cff94ffbfbcc83b636d0ef4acf94a27da69f3ab041775
+    image: docker.io/luckysideburn/kubeinvaders:latest
+    imageID: docker.io/luckysideburn/kubeinvaders@sha256:b320f4c8b02b53c97310ed5f8df0839b380760d536f8c0bfe71dca5d98e318bd
+    lastState: {}
+    name: kubeinvaders
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2025-06-11T16:34:41Z"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-7xw92
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 10.122.0.5
+  hostIPs:
+  - ip: 10.122.0.5
+  phase: Running
+  podIP: 10.108.0.92
+  podIPs:
+  - ip: 10.108.0.92
+  qosClass: BestEffort
+  startTime: "2025-06-11T16:34:39Z"
