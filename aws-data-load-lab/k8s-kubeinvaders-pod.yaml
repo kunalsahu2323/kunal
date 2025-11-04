@@ -1,0 +1,148 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      prometheus.io/path: /metrics
+      prometheus.io/port: "8080"
+      prometheus.io/scrape: "true"
+    creationTimestamp: "2025-08-18T17:28:53Z"
+    generateName: kubeinvaders-67cd4c9667-
+    generation: 1
+    labels:
+      app.kubernetes.io/instance: kubeinvaders
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: kubeinvaders
+      pod-template-hash: 67cd4c9667
+    name: kubeinvaders-67cd4c9667-vthjf
+    namespace: kubeinvaders
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: kubeinvaders-67cd4c9667
+      uid: 34be46d5-6cce-4ccc-acda-f91411916f43
+    resourceVersion: "54804"
+    uid: 1cc2812a-183a-4f91-ab7a-77640dc1b9b0
+  spec:
+    containers:
+    - env:
+      - name: APPLICATION_URL
+        value: kubeinvaders.local
+      - name: NAMESPACE
+        value: namespace1,namespace2
+      - name: ALIENPROXIMITY
+        value: "10"
+      - name: HITSLIMIT
+        value: "1"
+      - name: UPDATETIME
+        value: "0.5"
+      - name: DISABLE_TLS
+        value: "true"
+      image: luckysideburn/kubeinvaders:latest
+      imagePullPolicy: Always
+      name: kubeinvaders
+      ports:
+      - containerPort: 8080
+        name: http
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-449jr
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: pool-692bp1c1u-2myqz
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: kubeinvaders
+    serviceAccountName: kubeinvaders
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-449jr
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2025-08-18T17:28:57Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2025-08-18T17:28:53Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2025-08-18T17:28:57Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2025-08-18T17:28:57Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2025-08-18T17:28:53Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://75d0c15ad361df45c359757d63b824288c9b6dae1c498be8dcde1c0d0e510069
+      image: docker.io/luckysideburn/kubeinvaders:latest
+      imageID: docker.io/luckysideburn/kubeinvaders@sha256:817325f19508bbdec4f79afd59bc1d2c7683e461d67d21e93ae9f3303a3ae894
+      lastState: {}
+      name: kubeinvaders
+      ready: true
+      resources: {}
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2025-08-18T17:28:56Z"
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-449jr
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 10.122.0.2
+    hostIPs:
+    - ip: 10.122.0.2
+    phase: Running
+    podIP: 10.108.0.109
+    podIPs:
+    - ip: 10.108.0.109
+    qosClass: BestEffort
+    startTime: "2025-08-18T17:28:53Z"
+kind: List
+metadata:
+  resourceVersion: ""
